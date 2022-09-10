@@ -16,11 +16,15 @@
   --dark-bg-cl: #2f303a;
   --accent-bg-cl: #2196f3;
   --accent-bg-hover-cl: #188ce8;
+  --overlay-bg-cl: rgba(47, 48, 58, 0.4);
+  --work-ov-bg-cl: rgba(47, 48, 58, 0.8);
+  --pf-ov-bg-cl: rgba(33, 150, 243, 0.9);
 
   /* Додаткові кольори */
   --additional-cl: #000000;
   --top-border-line-cl: #ececec;
   --portfolio-border-cl: #eeeeee;
+  --btn-border: rgba(0, 0, 0, 0.1);
   --social-icon-cl: #afb1b8;
   --social-icon-cl-10: rgba(255, 255, 255, 0.1);
 
@@ -33,8 +37,10 @@
   --box-shadow-pf-hover: 0px 1px 1px rgba(0, 0, 0, 0.12),
     0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
   --backdrop-bg-cl: rgba(0, 0, 0, 0.2);
-}
 
+  /* Переходи */
+  --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 /* Видалення зайвих вбудованих налаштувань*/
 .link {
   text-decoration: none;
@@ -186,7 +192,7 @@ ul {
   padding-top: 32px;
   padding-bottom: 32px;
 
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--animation);
 }
 .contact-list-icon {
   margin-right: 10px;
@@ -213,8 +219,8 @@ ul {
   margin-right: auto;
   background-image: linear-gradient(
       to right,
-      rgba(47, 48, 58, 0.4),
-      rgba(47, 48, 58, 0.4)
+      var(--overlay-bg-cl),
+      var(--overlay-bg-cl)
     ),
     url(../images/hero-img.jpg);
   background-position: center;
@@ -254,8 +260,7 @@ ul {
   margin-top: 30px;
   min-width: 216px;
 
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--animation), box-shadow var(--animation);
 }
 .section-one-btn:hover,
 .section-one-btn:focus {
@@ -272,23 +277,31 @@ ul {
   height: 100%;
 
   background: var(--backdrop-bg-cl);
+
+  opacity: 1;
+  transition: opacity var(--animation);
 }
 .backdrop.is-hidden {
   opacity: 0;
   pointer-events: none;
-  visibility: hidden;
 }
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(2);
+}
+
 .modal {
   position: absolute;
   width: 528px;
   height: 581px;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
 
-  background: #ffffff;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
-    0px 2px 1px rgba(0, 0, 0, 0.2);
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform var(--animation);
+
+  background: var(--main-bg-cl);
+  box-shadow: var(--box-shadow-tm);
   border-radius: 4px;
 }
 .modal-btn {
@@ -299,12 +312,14 @@ ul {
   height: 30px;
   padding: 0;
   border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--main-bg-cl);
+  border: 1px solid var(--btn-border);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
+
 /**
   |============================
   | ОСОБЛИВОСТІ
@@ -335,7 +350,7 @@ ul {
   justify-content: center;
   align-items: center;
   height: 120px;
-  background: #f5f4fa;
+  background: var(--light-bg-cl);
   border-radius: 4px;
   margin-bottom: 30px;
 }
@@ -382,8 +397,8 @@ ul {
   text-align: center;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: #ffffff;
-  background: rgba(47, 48, 58, 0.8);
+  color: var(--light-txt-cl);
+  background: var(--work-ov-bg-cl);
 }
 /**
   |============================
@@ -453,8 +468,7 @@ ul {
   width: 100%;
   height: 100%;
 
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--animation), color var(--animation);
 }
 .social-links:hover,
 .social-links:focus {
@@ -499,8 +513,7 @@ ul {
   border: 1px solid var(--social-icon-cl);
   border-radius: 4px;
 
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--animation), border var(--animation);
 }
 .clients-link:hover,
 .clients-link:focus {
@@ -530,10 +543,10 @@ ul {
 .footer-contacts {
   color: var(--light-txt-cl-60);
 
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--animation);
 }
 .footer-link {
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--animation);
 }
 .social-links:hover,
 .social-links:focus {
@@ -593,9 +606,8 @@ ul {
   border-radius: 4px;
   padding: 6px 22px;
 
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--animation), color 250ms var(--animation),
+    box-shadow var(--animation);
 }
 .filter-item:not(:last-child) {
   margin-right: 8px;
@@ -637,11 +649,11 @@ ul {
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(33, 150, 243, 0.9);
-  color: #ffffff;
+  background: var(--pf-ov-bg-cl);
+  color: var(--light-txt-cl);
 
   transform: translateY(100%);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--animation);
 }
 .project-link:hover .project-overlay-txt {
   transform: translateY(0);
