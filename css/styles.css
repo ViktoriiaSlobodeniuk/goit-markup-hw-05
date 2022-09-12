@@ -387,14 +387,15 @@ ul {
 }
 .work-item-title {
   position: absolute;
-  top: 224px;
-  padding-top: 27px;
-  padding-bottom: 27px;
+  bottom: 0;
   width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   font-size: 14px;
   line-height: calc(16 / 14);
-  text-align: center;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--light-txt-cl);
@@ -606,7 +607,7 @@ ul {
   border-radius: 4px;
   padding: 6px 22px;
 
-  transition: background-color var(--animation), color 250ms var(--animation),
+  transition: background-color var(--animation), color var(--animation),
     box-shadow var(--animation);
 }
 .filter-item:not(:last-child) {
@@ -655,7 +656,8 @@ ul {
   transform: translateY(100%);
   transition: transform var(--animation);
 }
-.project-link:hover .project-overlay-txt {
+.project-link:hover .project-overlay-txt,
+.project-link:focus .project-overlay-txt {
   transform: translateY(0);
 }
 .project-title {
